@@ -17,11 +17,10 @@ public class UserController {
         this.userService = userService;
     }
 
-
     // 회원 로그인 페이지
     @GetMapping("/user/login")
     public String login() {
-        return "login"; //타임리프가 눈치채고 template 안에 있는 login.html을 보내준다
+        return "login";
     }
 
     // 회원 가입 페이지
@@ -37,4 +36,3 @@ public class UserController {
         return "redirect:/user/login";
     }
 }
-

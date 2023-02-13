@@ -4,20 +4,22 @@ import com.example.spartaspring.dto.SignupRequestDto;
 import com.example.spartaspring.model.User;
 import com.example.spartaspring.model.UserRoleEnum;
 import com.example.spartaspring.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
     private final UserRepository userRepository;
     private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+//    @Autowired
+//    public UserService(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
     public void registerUser(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
@@ -31,8 +33,8 @@ public class UserService {
         String email = requestDto.getEmail();
         // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
-        if (requestDto.isAdmin()) { //isAdmin이 true라면
-            if (!requestDto.getAdminToken().equals(ADMIN_TOKEN)) { //동일하지 않을 때
+        if (requestDto.isAdmin()) {
+            if (!requestDto.getAdminToken().equals(ADMIN_TOKEN)) {
                 throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
             }
             role = UserRoleEnum.ADMIN;

@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 로그인 기능
                 .and()
+                // 로그인 기능 허용
                 .formLogin()
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/")
